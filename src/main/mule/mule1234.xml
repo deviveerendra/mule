@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="a9f3a1bf-6d69-4ca6-beb1-90a7f1e35010" >
+		<http:listener-connection host="0.0.0.0" port="8011" />
+	</http:listener-config>
+	<flow name="mule1234Flow" doc:id="d9e20392-24fd-40be-8143-c903557c9224" >
+		<http:listener doc:name="Listener" doc:id="8a1639f5-d715-4f58-a9ff-ee08a8c5472c" config-ref="HTTP_Listener_config" path="/dsa"/>
+		<set-payload value="hi" doc:name="Set Payload" doc:id="5d363faa-d4b9-4fcf-9a2c-941a805d13e6" />
+		<ee:transform doc:name="Transform Message" doc:id="e76e5a02-d2dd-48ec-b263-f9bfce43b65d" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
