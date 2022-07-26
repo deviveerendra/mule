@@ -1,0 +1,27 @@
+pipeline {
+
+  agent any
+  environment {
+    //adding a comment for the commit test
+    anpoint_creds=credentials('anypoint_credentials')
+    
+  }
+  stages {
+    stage('Build') {
+      steps {
+            bat 'mvn -B -U -e -V clean -DskipTests package'
+      }
+    }
+
+    stage('Test') {
+      steps {
+          echo "testing"
+      }
+    }
+    stage('Deployment') {
+      steps {
+            bat 'mvn -U -V -e -B -DskipTests deploy -DmuleDeploy -Dmule.version=4.4.0 -Dusername="%anpoint_creds_usr%" -Dpassword="%anypoint_creds_psw%" -Denv=Sandbox -Dappname=myfirst-deviveerendra -Dbusiness=neurogaint12344e4 -DvCore=Micro -Dworkers'
+      }
+    }
+  }
+}
