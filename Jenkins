@@ -20,7 +20,7 @@ pipeline {
     }
     stage('Deployment') {
       steps {
-            bat 'mvn -U -V -e -B -DskipTests deploy -DmuleDeploy -Dmule.version=4.4.0 -Dusername="%ANYPOINT_CREDS_USR%" -Dpassword="%ANYPOINT_CREDS_PSW%" -Denv=Sandbox -Dappname=myfirst-deviveerendra1 -Dbusiness=neurogaint12344e4 -DvCore=Micro -Dworkers=1'
+            bat 'mvn -U -V -e -B -DskipTests deploy -DmuleDeploy -Dmule.version=4.4.0 -Dusername="%ANYPOINT_CREDS_USR%" -Dpassword="%ANYPOINT_CREDS_PSW%" -Denv=Sandbox -Dappname=myfirst-deviveerendra1 -Dbusiness=neurogaint12344e4 -DvCore=Micro -Dworkers=1 -Dclient_id=d54b6ca508ea4722ac5b87b30ce5e424 -Dclient_secret=30ab259993394aeB8E1684B0cb1B66bd'
       }
     }
     stage('test') {
